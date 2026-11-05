@@ -18,6 +18,16 @@ the full playbook (what it is, when to use it, exact commands, gotchas).
 | Agent Reach | meta / internet-router | You need to read or search the internet or a specific platform (web, search, 小红书/X/B站/Reddit/FB/IG/V2EX/LinkedIn/YouTube/小宇宙/雪球/GitHub/RSS) and want one router that picks the right backend. | [tools/agent-reach.md](tools/agent-reach.md) |
 | Jina Reader | web / read | You need a webpage's content as clean Markdown for an LLM — incl. JS-rendered or lightly bot-walled pages (e.g. a Xiaohongshu note whose URL has a valid `xsec_token`). | [tools/jina-reader.md](tools/jina-reader.md) |
 
+## Skills
+
+Installable Claude Code skills that are built and kept here. Each lives in `skills/<name>/` (a `SKILL.md`
+plus its scripts and references). To use one, link it into `~/.claude/skills/`:
+`ln -s "$(pwd)/skills/<name>" ~/.claude/skills/<name>`.
+
+| Skill | Use when | Folder |
+|-------|----------|--------|
+| story-video | You need a story-first launch/explainer video (30-90 s, 4K, AI voice-over, captions, music, branded end card) and its LinkedIn caption: story draft, invented-name safety, voice, build, render, audio checks. | [skills/story-video](skills/story-video/SKILL.md) |
+
 ## Categories
 
 - **web / read** — fetch & clean page content

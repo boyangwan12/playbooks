@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape-4k">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=3840, height=2160" />
+<script src="assets/gsap.min.js"></script>
+<style>
+@font-face{font-family:'Baskerville';src:url('assets/fonts/libre-baskerville-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Baskerville';src:url('assets/fonts/libre-baskerville-700.woff2') format('woff2');font-weight:700}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-400.woff2') format('woff2');font-weight:400}
+@font-face{font-family:'Plex';src:url('assets/fonts/ibm-plex-mono-500.woff2') format('woff2');font-weight:500}
+@font-face{font-family:'DMSans';src:url('assets/fonts/dm-sans.woff2') format('woff2');font-weight:100 1000}
+:root{--ground:#100f0d;--paper:#f3f0ea;--ink:#1b1917;--muted:#5f594f;--gold:#c2b283;--cream:#ece7dc;--red:#d03b3b}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{margin:0;width:3840px;height:2160px;overflow:hidden;background:#050709}
+#root{position:relative;width:3840px;height:2160px;overflow:hidden;background:#050709}
+#stage{position:absolute;left:0;top:0;width:1920px;height:1080px;transform:scale(2);transform-origin:0 0;overflow:hidden;background:var(--ground);font-family:'DMSans',sans-serif;color:var(--cream)}
+#bg,#glow,#over,#scenes,#labels{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#glow{background:radial-gradient(ellipse 760px 520px at 50% 40%,rgba(132,108,58,.30),rgba(132,108,58,0) 70%)}
+.hair{position:absolute;left:90px;width:1740px;height:1px;background:rgba(255,255,255,.09)}
+#hairT{top:62px}#hairB{top:1024px}
+.mono{font-family:'Plex',monospace;font-weight:500;font-size:18px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
+.lbl{position:absolute;top:34px}
+.lbl.l{left:90px}.lbl.r{right:90px;text-align:right}
+#win{position:absolute;left:180px;top:84px;width:1560px;height:877.5px;border-radius:12px;overflow:hidden;background:#f4f4f2;box-shadow:0 34px 100px rgba(0,0,0,.65),0 2px 8px rgba(0,0,0,.5)}
+#cam{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0}
+#cam img.st{position:absolute;left:0;top:0;width:1920px;height:1080px;opacity:0}
+.mk{position:absolute;background:rgba(255,200,60,.62);mix-blend-mode:multiply;border-radius:3px}
+.ring{position:absolute;border:3px solid var(--red);border-radius:50%}
+.paper{position:absolute;background:var(--paper);color:var(--ink);border-radius:6px;box-shadow:0 22px 60px rgba(0,0,0,.5),0 2px 8px rgba(0,0,0,.45)}
+.ncard{padding:20px 28px 22px}
+.ncard .t{font-family:'Baskerville',serif;font-size:40px;line-height:1.15;letter-spacing:-.01em}
+.ncard .d{font-size:28px;color:var(--muted);margin-top:8px}
+.ncard.s .t{font-size:36px}.ncard.s{padding:16px 24px 18px}.ncard.s .d{font-size:28px;margin-top:5px}
+.sheet{padding:0;overflow:hidden}
+.sheet .hd{height:38px;background:#e3ded3;display:flex;font:500 18px 'Plex',monospace;color:#52493d;letter-spacing:.1em}
+.sheet .hd div{padding:9px 14px;border-right:1px solid #cfc9bc}
+.sheet .row{display:flex;height:60px;border-top:1px solid #dcd6c9;font-size:28px;align-items:center}
+.sheet .row .n{width:40px;text-align:center;background:#ebe7dd;height:100%;line-height:60px;font:500 18px 'Plex',monospace;color:#615b50}
+.sheet .row .a{flex:1;padding:0 18px}
+.sheet .row .b{width:230px;padding:0 18px;text-align:right;font-variant-numeric:tabular-nums;font-weight:600}
+.sheet .row .a small{display:block;font-size:18px;color:#615b50;margin-top:1px}
+.chip{position:absolute;display:flex;align-items:center;gap:12px;padding:9px 20px 9px 10px;border-radius:9px;background:var(--paper);color:var(--ink);box-shadow:0 14px 40px rgba(0,0,0,.5);transform-origin:50% 50%}
+.chip .nm{font-family:'Baskerville',serif;font-size:30px;letter-spacing:-.01em;white-space:nowrap}
+.inv{position:absolute;width:150px;height:40px;border-radius:5px;background:var(--paper);color:var(--ink);font:500 18px 'Plex',monospace;letter-spacing:.14em;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.45)}
+.ghost{position:absolute;width:150px;height:40px;border-radius:5px;border:1.5px dashed rgba(236,231,220,.4)}
+.quote{position:absolute;background:#fff;color:#231f20;border-radius:8px;padding:16px 24px 20px;font-size:32px;line-height:1.3;box-shadow:0 18px 50px rgba(0,0,0,.5);width:820px}
+.quote .q{font:500 17px 'Plex',monospace;letter-spacing:.16em;color:#5f594f;text-transform:uppercase;margin-bottom:9px}
+.quote .hl{position:relative;display:inline}
+#cap{position:absolute;left:160px;width:1600px;top:984px;text-align:center;font-size:29px;line-height:1.25;color:var(--cream);text-shadow:0 2px 14px rgba(0,0,0,.8)}
+#cap div{position:absolute;left:0;width:100%}
+#cursor{position:absolute;left:0;top:0;width:30px;height:30px;margin:-3px 0 0 -3px;z-index:50;filter:drop-shadow(0 3px 5px rgba(0,0,0,.45))}
+.ripple{position:absolute;width:46px;height:46px;margin:-23px 0 0 -23px;border-radius:50%;border:3px solid rgba(255,255,255,.9);z-index:49}
+#endcard{position:absolute;left:0;top:0;width:1920px;height:1080px;background:#050709;z-index:60}
+#endvid{position:absolute;left:0;top:0;width:1920px;height:1080px;object-fit:cover}
+#cta{position:absolute;left:0;width:1920px;top:742px;text-align:center;font-family:'Baskerville',serif;font-size:46px;letter-spacing:-.01em;color:#f1ece1}
+.res{padding:20px 30px 22px;width:430px}
+.res .k{font:500 18px 'Plex',monospace;letter-spacing:.14em;color:#5f594f;text-transform:uppercase}
+.res .v{font-family:'Baskerville',serif;font-size:56px;margin-top:6px;letter-spacing:-.01em}
+.res .s{font-size:28px;color:#5f594f;margin-top:4px}
+.note{padding:18px 28px 22px;width:700px;font-size:34px;line-height:1.3;font-family:'Baskerville',serif}
+.note small{display:block;font:500 17px 'Plex',monospace;letter-spacing:.18em;color:#5f594f;text-transform:uppercase;margin-bottom:6px}
+
+.ncard.l{padding:28px 36px 30px}.ncard.l .t{font-size:60px}.ncard.l .d{font-size:28px;margin-top:10px}
+.cell{position:absolute;width:120px;height:130px;border-radius:8px;background:rgba(236,231,220,.07);border:1px solid rgba(236,231,220,.22);text-align:center;padding-top:24px}
+.cell .w{font:500 28px 'Plex',monospace;letter-spacing:.1em;color:#c7b98e}.cell .dt{font-size:28px;color:rgba(236,231,220,.85);margin-top:10px}
+.bill{position:absolute;width:420px;height:68px;border-radius:8px;background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 24px;box-shadow:0 14px 36px rgba(0,0,0,.5)}
+.bill .nm{font-family:'Baskerville',serif;font-size:30px}.bill .am{font:500 28px 'Plex',monospace}
+.slot{position:absolute;border:2px dashed rgba(236,231,220,.5);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:28px;line-height:1.2;color:rgba(236,231,220,.9);text-align:center;padding:0 18px}
+.assumed{position:absolute;border-radius:8px;background:var(--paper);color:var(--ink);display:flex;align-items:center;justify-content:center;font-size:28px;line-height:1.2;text-align:center;padding:0 18px;box-shadow:0 14px 36px rgba(0,0,0,.5)}
+.tick{position:absolute;width:40px;height:40px;border-radius:50%;color:#fff;font:700 22px 'DMSans',sans-serif;text-align:center;line-height:40px}
+.mono.big{font-size:28px}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="__DUR__" data-width="3840" data-height="2160">
+  <div id="stage">
+    <div id="bg"></div><div id="glow"></div>
+    <div class="hair" id="hairT"></div><div class="hair" id="hairB"></div>
+    <div id="labels"></div>
+    <div id="scenes"></div>
+    <div id="win"><div id="cam">__IMGS__</div></div>
+    <div id="over"></div>
+    <svg id="cursor" viewBox="0 0 24 24"><path d="M3 2 L3 19 L7.6 14.8 L10.9 22 L14 20.6 L10.7 13.6 L17.2 13.4 Z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+    <div id="cap"></div>
+    <div id="endcard">
+      <video id="endvid" class="clip" src="assets/exergy_end.mp4" data-start="__ES__" data-duration="__VD__" data-track-index="2" muted playsinline></video>
+      <div id="cta">Want this on your invoices? Message EXERGY.</div>
+    </div>
+  </div>
+  <audio id="mix" class="clip" src="assets/mix.m4a" data-start="0" data-duration="__DUR__" data-track-index="1" data-volume="1"></audio>
+</div>
+<script>window.T=__T__;window.B=__B__;</script>
+<script>
+__CHOREO__
+</script>
+</body>
+</html>
