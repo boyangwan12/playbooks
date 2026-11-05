@@ -1,0 +1,28 @@
+# Carousel concepts
+
+A concept is one visual metaphor that **changes across the slides**, so the viewer feels the story before reading. Pair it with the five roles in `exergy-style.md`. Each entry: metaphor, how it moves, a prompt seed (always add "No text, no logos", warm off-white palette, empty upper 60%).
+
+## Tested
+**1. Rippled paper to clean fold** (used for Cash Gap Forecaster; matches EXERGY's existing carousel family).
+Messy crumples, calmer ripples, one smooth wave, almost flat, neatly folded stack. Best for: tidy-up, clarity, "from chaos to control" stories. Prompts in `image-gen.md`.
+
+## Untested directions (propose, then test one slide before committing to five)
+**2. Tangled thread to straight line.** A cream cotton thread knotted on the wall, loosening, then one straight line. Seed: "a single cream thread on a plaster wall, tightly tangled in a knot of loops" then "same, fewer loops", "a gentle curve", "a perfectly straight line". Best for: process mess, scheduling, data cleaning.
+
+**3. Stacked papers to one sheet.** A tall, leaning stack of paper shrinks over slides to a single page. Best for: reporting, documents, "everything in one place".
+
+**4. Dim room to open window light.** The same corner of a room, with light growing slide by slide until a clear window of sunlight. Best for: visibility, forecasting ("see it early"), dashboards.
+
+**5. Scattered stones to a balanced cairn.** Loose river stones, grouped, then a stable stack. Best for: prioritisation, capacity, workload.
+
+**6. Cracked ceramic to repaired (kintsugi).** A cup with growing gold seams. Best for: recovery, resilience, risk, "fix before it breaks".
+
+**7. Calendar grid filling up.** Abstract paper tiles for weeks; one tile highlighted, then moved. Best for: the 13-week forecast idea; closest to the product.
+
+## How to invent more
+1. Name the before and after state of the reader's problem in four words each ("tangled, slow" / "clear, calm").
+2. Find a physical object that can show both states with one material and one light.
+3. Write five points along the change, equally spaced; slide 1 must already look unsettled, slide 5 resolved.
+4. Keep camera, wall, light and palette constant; change one thing per slide.
+5. Generate slide 1 and slide 5 first: if the two extremes look good, the middle slides will.
+6. Reject concepts that need text inside the image, people's faces, logos, or hands (generators handle them badly and they raise rights questions).

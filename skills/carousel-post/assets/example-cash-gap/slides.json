@@ -1,0 +1,57 @@
+{
+  "slides": [
+    {
+      "title": "The Problem.",
+      "image": "work/paper/paper-1.jpg",
+      "textMax": 770,
+      "blocks": [
+        { "p": "Picture a wholesale bakery. Hotels and cafes order every week, and every invoice goes out with a due date." },
+        { "p": "The cash forecast is a spreadsheet, and it assumes every client pays on that date. But one of the biggest clients pays about six weeks late." },
+        { "b": "The spreadsheet says you're fine. You're not." }
+      ]
+    },
+    {
+      "title": "The Ripple Effect.",
+      "image": "work/paper/paper-2.jpg",
+      "textMax": 770,
+      "blocks": [
+        { "p": "In week six, the staff bonus, payroll and insurance all come due: $188,900 in a single week." },
+        { "p": "The client's payment hasn't arrived. The spreadsheet counts it as already paid, so nothing warns you." },
+        { "b": "One late payment becomes a cash gap, and nobody sees it coming." }
+      ]
+    },
+    {
+      "title": "The Solution.",
+      "image": "work/paper/paper-3.jpg",
+      "textMax": 820,
+      "blocks": [
+        { "p": "What if the forecast learned how each client really pays?" },
+        { "p": "That's the idea behind Cash Gap Forecaster, an EXERGY proof of concept. It reads three years of invoices and payments, then draws the next 13 weeks." },
+        { "b": "You see the gap over a month before it happens." }
+      ]
+    },
+    {
+      "title": "Proof of Concept.",
+      "image": "work/paper/paper-4.jpg",
+      "textMax": 1010,
+      "blocks": [
+        { "item": "Learns from your history.", "text": "Uses three years of invoices and payments to learn how each client really pays." },
+        { "item": "Shows the gap early.", "text": "Flags the week cash drops below your minimum: $10,066 under, in week six." },
+        { "item": "Tests a fix first.", "text": "Move one bill two weeks and see the new forecast. Week six goes from $19,934 to $102,934." },
+        { "b": "A forecast you can check, question and test." },
+        { "note": "Check our next post to see it in action." }
+      ]
+    },
+    {
+      "title": "The Invitation.",
+      "image": "work/paper/paper-5.jpg",
+      "textMax": 1010,
+      "blocks": [
+        { "p": "Maybe cash isn't what keeps you up at night. Maybe it's reporting, follow-ups, or finding information." },
+        { "p": "If something in your business keeps surprising you, we'd like to hear about it." },
+        { "b": "Let's explore what we could help you with!" },
+        { "email": "contact@exergylabs.ai" }
+      ]
+    }
+  ]
+}

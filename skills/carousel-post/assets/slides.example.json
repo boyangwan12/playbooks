@@ -1,0 +1,15 @@
+{
+  "logo": null,
+  "slides": [
+    { "title": "The Problem.", "image": "images/paper-1.jpg", "textMax": 760,
+      "blocks": [ { "p": "Short setup paragraph about the reader's situation." }, { "p": "What goes wrong." }, { "b": "One bold closing line." } ] },
+    { "title": "The Ripple Effect.", "image": "images/paper-2.jpg", "textMax": 760,
+      "blocks": [ { "p": "How the problem spreads." }, { "b": "Bold consequence." } ] },
+    { "title": "The Solution.", "image": "images/paper-3.jpg", "textMax": 830,
+      "blocks": [ { "p": "What if...?" }, { "p": "What we built, in one sentence." }, { "b": "The promise." } ] },
+    { "title": "Proof of Concept.", "image": "images/paper-4.jpg", "textMax": 1000,
+      "blocks": [ { "item": "Lead phrase.", "text": "One line of proof with a real number." }, { "item": "Second.", "text": "Another line." }, { "b": "Bold closing line." }, { "note": "Check our next post to see it in action." } ] },
+    { "title": "The Invitation.", "image": "images/paper-5.jpg", "textMax": 1000,
+      "blocks": [ { "p": "Maybe it is not this problem. Maybe it is something else." }, { "b": "Let's explore what we could help you with!" }, { "email": "contact@exergylabs.ai" } ] }
+  ]
+}
