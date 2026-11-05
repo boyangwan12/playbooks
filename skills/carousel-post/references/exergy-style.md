@@ -12,8 +12,13 @@ Taken from EXERGY's own proposal-drafting carousel (LinkedIn, Nov 2026, five sli
 ## Voice
 Plain, calm, second person, short sentences. No hype words, no emojis in slides. Bold is reserved for the closing line of each slide and the lead phrases on the proof slide. Titles end with a full stop.
 
-## Typography and layout (the template matches this)
-DM Sans: title light 72 px, body light 33 px at 1.46 line height, bold 600 for emphasis; cream background; text block in the top half, artwork in the bottom third; logo (dark) bottom-left, page counter bottom-right; 88 px side margins. Use true type weights only (the variable font has no italic: do not fake one; an earlier EXERGY slide used a different font for one line and looked like a late edit).
+## Typography and layout (the template matches this; measured from EXERGY's own carousel)
+Typeface: **standard DM Sans** (the `@fontsource-variable/dm-sans` wght file, NOT the optical-size `opsz` file: the opsz version sets tighter and wraps differently). Measured by typesetting the coworker's first paragraph and matching his line breaks exactly:
+- Title: **62 px** (on a 1080 px wide slide), weight ~330, line-height 1.05, normal letter-spacing.
+- Body: **34.5 px**, weight ~330, line-height **1.4**, colour dark charcoal (#2e2e2c); bold (600) only for the closing line and proof-slide lead phrases.
+- Cream background (#f4f1e9), text block starting 96 px from the top, 88 px side margins, logo (dark) bottom-left, "01 / 05" bottom-right.
+- Use true weights only (the variable font has no italic: do not fake one; an earlier EXERGY slide used a different font for one line and looked like a late edit).
+- If you must re-measure: crop the original slide, typeset the same sentence at candidate sizes in a 1080 px page, and compare where the lines break.
 
 ## Framing rules
 - "We built this for a client" is a claim. Use it only when true. For an invented example business use "Picture a..." and "an EXERGY proof of concept".
