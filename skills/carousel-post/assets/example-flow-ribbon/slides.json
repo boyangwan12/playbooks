@@ -1,0 +1,44 @@
+{
+  "panorama": { "svg": "art.svg" },
+  "slides": [
+    {
+      "title": "Your forecast is a guess.", "theme": "dark", "textMax": 640,
+      "blocks": [
+        { "p": "A spreadsheet assumes every client pays on the due date. Real clients don't." },
+        { "b": "Swipe to see what that costs." }
+      ]
+    },
+    {
+      "title": "Week six.", "theme": "dark", "textMax": 700,
+      "blocks": [
+        { "p": "$188,900 of bills land in a single week: the staff bonus, payroll and insurance." },
+        { "p": "The forecast shows $19,934 left, $10,066 under the $30,000 minimum." },
+        { "b": "The spreadsheet said you were fine." }
+      ]
+    },
+    {
+      "title": "Seeing it early.", "theme": "dark", "textMax": 760,
+      "blocks": [
+        { "p": "Cash Gap Forecaster reads three years of invoices and payments and learns how each client really pays." },
+        { "p": "One hotel client pays about 42 days late, across 52 invoices. The forecast uses that, not the due date." },
+        { "b": "The gap shows up over a month before it happens." }
+      ]
+    },
+    {
+      "title": "Try a fix.", "theme": "light", "textMax": 760,
+      "blocks": [
+        { "p": "Move the staff bonus back two weeks and the forecast updates." },
+        { "p": "Week six closing cash goes from $19,934 to $102,934. Weeks 12 and 13 still dip, and now there's time to plan." },
+        { "b": "Test it first. Commit second." }
+      ]
+    },
+    {
+      "title": "Watch it work.", "theme": "light", "textMax": 700,
+      "blocks": [
+        { "p": "Our next post is an 85-second video: a wholesale bakery, a late-paying client and the fix." },
+        { "b": "Want this on your invoices? Message EXERGY." },
+        { "email": "contact@exergylabs.ai" }
+      ]
+    }
+  ]
+}

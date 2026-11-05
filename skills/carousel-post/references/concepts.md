@@ -2,8 +2,13 @@
 
 A concept is one visual metaphor that **changes across the slides**, so the viewer feels the story before reading. Pair it with the five roles in `exergy-style.md`. Each entry: metaphor, how it moves, a prompt seed (always add "No text, no logos", warm off-white palette, empty upper 60%).
 
+## Rule: it must flow
+A concept only works if the slides connect. Design ONE wide picture and slice it. Test by joining the exported slides side by side: the artwork must continue across every seam. Keep text away from the seams.
+
 ## Tested
-**1. Rippled paper to clean fold** (used for Cash Gap Forecaster; matches EXERGY's existing carousel family).
+**0. Flow ribbon (seamless panorama; default).** One ribbon of light runs across all slides: tangled and wide at the start, squeezed to a point at the problem (labelled, e.g. "WEEK 6 · $19,934"), then opening into a calm, wide band; background dark to cream with the turn at a slide seam. Made by `scripts/flow-ribbon.mjs`. Best for: cash flow, pipelines, process bottlenecks, anything that narrows then clears.
+
+**1. Rippled paper to clean fold** (photo series, used for the first Cash Gap Forecaster carousel; matches EXERGY's existing carousel family, which a coworker already posted). Five separate photos with gradual change: weaker than a seamless panorama.
 Messy crumples, calmer ripples, one smooth wave, almost flat, neatly folded stack. Best for: tidy-up, clarity, "from chaos to control" stories. Prompts in `image-gen.md`.
 
 ## Untested directions (propose, then test one slide before committing to five)

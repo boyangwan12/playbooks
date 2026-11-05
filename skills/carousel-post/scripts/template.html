@@ -9,6 +9,8 @@ html,body{background:var(--bg)}
 .slide{position:relative;width:var(--w);height:var(--h);overflow:hidden;background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--ink);page-break-after:always;break-after:page}
 .slide:last-child{page-break-after:auto;break-after:auto}
 .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
+.pano{position:absolute;top:0;height:1350px}
+.pano svg{display:block;width:100%;height:100%}
 .content{position:absolute;left:88px;right:88px;top:96px}
 h1{font-weight:300;font-size:72px;line-height:1.05;letter-spacing:-.015em;margin-bottom:54px}
 p{font-weight:300;font-size:33px;line-height:1.46;color:var(--soft);margin-bottom:30px}
@@ -19,4 +21,8 @@ p.email{font-size:29px;font-weight:400;margin-top:-6px}
 .foot{position:absolute;left:88px;right:88px;bottom:54px;display:flex;justify-content:space-between;align-items:center}
 .foot img{height:50px;display:block}
 .foot span{font-size:26px;font-weight:300;letter-spacing:.04em;color:var(--soft)}
+/* dark slides: light text and a light logo (chosen per slide, or automatically from the artwork's brightness) */
+.slide.dark h1,.slide.dark p.b,.slide.dark p.item b{color:#f6f2e8}
+.slide.dark p,.slide.dark .foot span{color:#e4dfd3}
+.slide.dark .foot img{filter:invert(1) brightness(1.15)}
 </style></head><body>__SLIDES__</body></html>

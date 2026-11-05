@@ -27,7 +27,7 @@ plus its scripts and references). To use one, link it into `~/.claude/skills/`:
 | Skill | Use when | Folder |
 |-------|----------|--------|
 | story-video | You need a story-first launch/explainer video (30-90 s, 4K, AI voice-over, captions, music, branded end card) and its LinkedIn caption: story draft, invented-name safety, voice, build, render, audio checks. | [skills/story-video](skills/story-video/SKILL.md) |
-| carousel-post | You need a branded LinkedIn carousel (5-8 slides, PNG + PDF) with generated background art, EXERGY voice, a real-typography build script, overflow checks and the caption; includes creative concepts and the Gemini-through-Chrome image workflow. | [skills/carousel-post](skills/carousel-post/SKILL.md) |
+| carousel-post | You need a branded LinkedIn carousel (5-8 slides, PNG + PDF) with seamless panoramic art that flows across the slides (or generated photos), EXERGY voice, a real-typography build script, overflow checks and the caption; includes creative concepts and the Gemini-through-Chrome image workflow. | [skills/carousel-post](skills/carousel-post/SKILL.md) |
 
 ## Categories
 

@@ -1,13 +1,17 @@
 ---
 name: carousel-post
-description: Make a branded LinkedIn carousel (5-8 slides, PNG + PDF) with designed photo-style backgrounds, in EXERGY's voice, for a product, proof of concept, case study or idea. Use whenever the user wants a LinkedIn carousel, "a post like this with the pictures designed", slides for a document post, a carousel to go with a video, or creative carousel ideas, even if they never say "carousel". Covers concept and copy, generating the background art (Gemini through the user's Chrome, or an API), building slides with real typography and the EXERGY logo, overflow checks, and the caption. Pairs with the story-video skill: carousel first, video second.
+description: Make a branded LinkedIn carousel (5-8 slides, PNG + PDF) with designed photo-style backgrounds, in EXERGY's voice, for a product, proof of concept, case study or idea. Use whenever the user wants a LinkedIn carousel, "a post like this with the pictures designed", slides for a document post, a carousel to go with a video, or creative carousel ideas, even if they never say "carousel". Covers concept and copy, generating the background art (Gemini through the user's Chrome, or an API), building slides with real typography and the EXERGY logo, overflow checks, and the caption. Pairs with the story-video skill: carousel first, video second. Default style is a SEAMLESS panorama (one picture flowing across all slides), not separate pictures.
 ---
 
 # LinkedIn carousel pipeline
 
 Worked example: the Cash Gap Forecaster carousel (`assets/example-cash-gap/`). Its look follows a carousel EXERGY already posted: cream paper, DM Sans, the logo bottom-left, "01 / 05" bottom-right, sections named *The Problem / The Ripple Effect / The Solution / Proof of Concept / The Invitation*.
 
-**Core idea.** The pictures carry one visual metaphor across all slides (paper going from messy ripples to a clean fold, which is the story of the product), and the **type is real text added by code**, never baked into the generated image. Image generators misspell words and cannot hold a layout; code can. So: generate text-free art, then compose.
+**Core idea.** A carousel is one story you swipe through, so the pictures must **connect**: ideally ONE wide artwork (5400x1350 for five 1080x1350 slides) that runs across all the slides, with a line, ribbon, road, horizon or colour change crossing the seams. Five separate pictures that merely change gradually (the first paper carousel did this) read as five images, and the user rejected that approach: "the whole idea of carousel is that those pictures connect to each other, like a flow". The **type is real text added by code**, never baked into the art: image generators misspell words and cannot hold a layout; code can.
+
+Two art routes:
+- **Panorama (default).** `scripts/flow-ribbon.mjs` draws a seamless 5400x1350 SVG: a ribbon of light that starts tangled, pinches at the problem and opens into a calm wide band while the background turns from dark to cream. Set `"panorama": {"svg": "art.svg"}` in slides.json. Worked example: `assets/example-flow-ribbon/`.
+- **Photo series.** One generated photo per slide (Gemini), used when the user wants photographic art. It needs care to avoid looking like five separate pictures: if used, make a continuous element cross every edge (or outpaint each image from the previous one). See `references/image-gen.md`. Worked example: `assets/example-cash-gap/`.
 
 ## Workflow
 
@@ -23,13 +27,13 @@ Voice and structure in `references/exergy-style.md`. Five slides, each: a sectio
 - If a video follows, slide 4 ends "Check our next post to see it in action."
 
 ### 3. Background art
-Read `references/image-gen.md`. Default route: drive Gemini (Nano Banana) in the user's Chrome with the Claude-in-Chrome tools, one chat, slide 1 first and later slides as "same scene, but..." follow-ups, 3:4 portrait, text-free, upper 60% empty. Save as `work/paper/paper-N.jpg`. Look at all of them side by side before building; regenerate any slide that breaks the progression. The Gemini API works too but needs billing on the key (free tier returns 429 for image models).
+For a panorama, run `scripts/flow-ribbon.mjs` (or design another one-piece artwork) and keep every piece of text inside the slide margins, away from the seams. For photo art, read `references/image-gen.md`. Default route: drive Gemini (Nano Banana) in the user's Chrome with the Claude-in-Chrome tools, one chat, slide 1 first and later slides as "same scene, but..." follow-ups, 3:4 portrait, text-free, upper 60% empty. Save as `work/paper/paper-N.jpg`. Look at all of them side by side before building; regenerate any slide that breaks the progression. The Gemini API works too but needs billing on the key (free tier returns 429 for image models).
 
 ### 4. Build
 ```
 node <skill>/scripts/build.mjs <carousel-dir>     # run from a repo with playwright installed
 ```
-`<carousel-dir>/slides.json` follows `assets/slides.example.json` (blocks: `p`, `b`, `item`+`text`, `note`, `email`). Output in `<carousel-dir>/out/`: `slide-N.png` (2160x2700), `carousel.pdf` (vector text, 1080x1350). The script crops 3:4 art to 4:5 anchored to the bottom (keeps the paper), and prints where each slide's text ends; set `textMax` per slide to the top edge of the artwork (about 770 when the paper is tall, about 1000 when it is flat). It warns on overflow: shorten the copy, do not shrink the type.
+`<carousel-dir>/slides.json` follows `assets/slides.example.json` (blocks: `p`, `b`, `item`+`text`, `note`, `email`). In panorama mode give each slide a `theme` (`dark` = light text and logo, `light` = dark text); photo slides pick the theme automatically from the artwork's brightness. Output in `<carousel-dir>/out/`: `slide-N.png` (2160x2700), `carousel.pdf` (vector text, 1080x1350). The script crops 3:4 art to 4:5 anchored to the bottom (keeps the paper), and prints where each slide's text ends; set `textMax` per slide to the top edge of the artwork (about 770 when the paper is tall, about 1000 when it is flat). It warns on overflow: shorten the copy, do not shrink the type.
 
 ### 5. Review and deliver
 Make a contact sheet and look at every slide: text clear of the artwork, no orphan words, numbers right, logo and page numbers present, progression reads. Then give the user the PDF (LinkedIn "document" upload) and the PNGs, plus the caption. Do not post for them. Commit sources, not the multi-megabyte renders.

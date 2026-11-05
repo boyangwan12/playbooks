@@ -6,6 +6,7 @@
 // Also warns when a slide's text runs into the artwork (textMax) so you fix copy instead of shipping overlap.
 import { readFileSync, writeFileSync, mkdirSync, existsSync, copyFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
+import { spawnSync } from 'node:child_process';
 import { dirname, join, resolve, basename } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -31,10 +32,16 @@ const block = (b) => {
   if (b.email) return `<p class="email">${esc(b.email)}</p>`;
   throw new Error('unknown block ' + JSON.stringify(b));
 };
+const pano = cfg.panorama ? readFileSync(resolve(dir, cfg.panorama.svg), 'utf8').replace(/^<\?xml[^>]*>/, '') : null;   // ONE wide SVG shared by all slides: slide i shows its i-th 1080 px column
 const slides = cfg.slides.map((s, i) => {
-  const img = resolve(dir, s.image); if (!existsSync(img)) throw new Error('missing image ' + img);
-  copyFileSync(img, join(out, `bg-${i + 1}${img.slice(img.lastIndexOf('.'))}`));
-  return `<section class="slide" id="s${i + 1}"><img class="bg" src="bg-${i + 1}${img.slice(img.lastIndexOf('.'))}" alt=""><div class="content"><h1>${esc(s.title)}</h1>${s.blocks.map(block).join('')}</div><div class="foot"><img src="logo.svg" alt="EXERGY"><span>${pad(i)} / ${pad(n - 1)}</span></div></section>`;
+  let art;
+  if (pano) art = `<div class="pano" style="left:-${i * 1080}px;width:${n * 1080}px">${pano}</div>`;
+  else {
+    const img = resolve(dir, s.image); if (!existsSync(img)) throw new Error('missing image ' + img);
+    copyFileSync(img, join(out, `bg-${i + 1}${img.slice(img.lastIndexOf('.'))}`));
+    art = `<img class="bg" src="bg-${i + 1}${img.slice(img.lastIndexOf('.'))}" alt="">`;
+  }
+  return `<section class="slide" id="s${i + 1}">${art}<div class="content"><h1>${esc(s.title)}</h1>${s.blocks.map(block).join('')}</div><div class="foot"><img src="logo.svg" alt="EXERGY"><span>${pad(i)} / ${pad(n - 1)}</span></div></section>`;
 });
 const html = readFileSync(join(here, 'template.html'), 'utf8').replace('__FONT__', 'font.woff2').replace('__SLIDES__', slides.join('\n'));
 writeFileSync(join(out, 'carousel.html'), html);
@@ -45,6 +52,15 @@ const browser = await chromium.launch({ channel: 'chrome' });
 const page = await browser.newPage({ viewport: { width: 1080, height: 1350 }, deviceScaleFactor: 2 });
 await page.goto(pathToFileURL(join(out, 'carousel.html')).href);
 await page.evaluate(() => document.fonts.ready); await page.waitForTimeout(400);
+// theme: "light" | "dark" per slide in slides.json, or "auto" (default): measure the artwork's brightness where the text sits
+const lum = (file, textMax) => {                     // art is cover-fitted to 4:5 and anchored at the bottom, so the visible area starts at 1-(0.75/0.8) of the image height
+  const top = 0.0625, h = 0.9375 * Math.min(1, textMax / 1350);
+  const r = spawnSync('ffmpeg', ['-v', 'error', '-i', file, '-vf', `crop=iw*0.9:ih*${h}:iw*0.05:ih*${top},scale=1:1:flags=area,format=gray`, '-f', 'rawvideo', '-'], { encoding: 'buffer' });
+  return r.stdout.length ? r.stdout[0] / 255 : 0.7;
+};
+const themeList = cfg.slides.map((s, i) => (s.theme && s.theme !== 'auto') ? s.theme : pano ? 'light' : (lum(join(out, `bg-${i + 1}${resolve(dir, s.image).slice(resolve(dir, s.image).lastIndexOf('.'))}`), s.textMax ?? 780) < 0.5 ? 'dark' : 'light'));
+await page.evaluate((th) => th.forEach((t, i) => document.querySelector('#s' + (i + 1)).classList.toggle('dark', t === 'dark')), themeList);
+console.log('themes:', themeList.join(', '));
 let warned = 0;
 for (let i = 0; i < n; i++) {
   const sel = `#s${i + 1}`;
