@@ -6,7 +6,9 @@ A concept is one visual metaphor that **changes across the slides**, so the view
 A concept only works if the slides connect. Design ONE wide picture and slice it. Test by joining the exported slides side by side: the artwork must continue across every seam. Keep text away from the seams.
 
 ## Tested
-**0. Flow ribbon (seamless panorama; default).** One ribbon of light runs across all slides: tangled and wide at the start, squeezed to a point at the problem (labelled, e.g. "WEEK 6 · $19,934"), then opening into a calm, wide band; background dark to cream with the turn at a slide seam. Made by `scripts/flow-ribbon.mjs`. Best for: cash flow, pipelines, process bottlenecks, anything that narrows then clears.
+**00. Data line across the strip (default for product/data stories).** The product's own line chart, drawn as one seamless picture: minimum-cash dashed line, the dip shaded, a gold "after the move" line, labelled markers, a dotted fade-out at the end. One flat cream background. Used for the Cash Gap Forecaster carousel after the abstract ribbon was rejected as unreadable. Made by `scripts/chart-panorama.mjs`. Best for: anything with a time series, a threshold and a before/after.
+
+**0. Flow ribbon (seamless panorama; abstract, rejected once for being illegible).** One ribbon of light runs across all slides: tangled and wide at the start, squeezed to a point at the problem (labelled, e.g. "WEEK 6 · $19,934"), then opening into a calm, wide band; background dark to cream with the turn at a slide seam. Made by `scripts/flow-ribbon.mjs`. Best for: cash flow, pipelines, process bottlenecks, anything that narrows then clears.
 
 **1. Rippled paper to clean fold** (photo series, used for the first Cash Gap Forecaster carousel; matches EXERGY's existing carousel family, which a coworker already posted). Five separate photos with gradual change: weaker than a seamless panorama.
 Messy crumples, calmer ripples, one smooth wave, almost flat, neatly folded stack. Best for: tidy-up, clarity, "from chaos to control" stories. Prompts in `image-gen.md`.

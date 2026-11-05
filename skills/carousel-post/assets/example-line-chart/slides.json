@@ -1,0 +1,28 @@
+{
+  "panorama": { "svg": "art.svg" },
+  "slides": [
+    { "title": "Your forecast is a guess.", "theme": "light", "textMax": 640,
+      "blocks": [
+        { "p": "A spreadsheet assumes every client pays on the due date. Real clients don't." },
+        { "b": "Swipe to see what that costs." } ] },
+    { "title": "Week six.", "theme": "light", "textMax": 700,
+      "blocks": [
+        { "p": "$188,900 of bills land in a single week: the staff bonus, payroll and insurance." },
+        { "p": "The spreadsheet says cash is fine, because it counts a late client's payment as already paid." },
+        { "b": "Swipe to see what it misses." } ] },
+    { "title": "Cash Gap Forecaster.", "theme": "light", "textMax": 790,
+      "blocks": [
+        { "p": "It reads three years of invoices and payments and learns how each client really pays. One hotel client pays about 42 days late." },
+        { "p": "Week six really closes at $19,934, $10,066 under the minimum. Move the staff bonus back two weeks and it becomes $102,934." },
+        { "b": "You see the gap over a month early, and test the fix first." } ] },
+    { "title": "Still time to plan.", "theme": "light", "textMax": 700,
+      "blocks": [
+        { "p": "Weeks 12 and 13 still dip below the minimum, and now there's time to plan for them." },
+        { "b": "You're in control of your cash, with no need to stress." } ] },
+    { "title": "Watch it work.", "theme": "light", "textMax": 700,
+      "blocks": [
+        { "p": "Our next post is an 85-second video: a wholesale bakery, a late-paying client and the fix." },
+        { "b": "Want this on your invoices? Message EXERGY." },
+        { "email": "contact@exergylabs.ai" } ] }
+  ]
+}

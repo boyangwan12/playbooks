@@ -1,0 +1,16 @@
+{
+  "slides": 5, "bg": "#f4f1e9", "ink": "#232323", "y0": 1190, "scale": 2.4,
+  "threshold": { "value": 30, "label": "MINIMUM CASH · $30,000", "color": "#8e897d" },
+  "series": [
+    { "name": "forecast", "color": "#232323", "width": 4,
+      "points": [[150, 83.2], [580, 68.0], [1010, 124.7], [1560, 111.9], [2040, 149.8], [2700, 19.9], [2900, 64.7], [3100, 55.1], [3330, 100.3], [3540, 56.3], [3750, 72.1], [3960, 21.1], [4170, 26.5]] },
+    { "name": "after", "color": "#b8924a", "width": 5,
+      "points": [[2040, 149.8], [2700, 102.9], [2900, 147.7], [3100, 55.1]] }
+  ],
+  "fills": [ { "series": "forecast", "color": "#b5533c", "opacity": 0.2 } ],
+  "markers": [
+    { "x": 2700, "value": 19.9, "label": "WEEK 6 · $19,934", "color": "#b5533c", "dy": 66 },
+    { "x": 2700, "value": 102.9, "label": "AFTER THE MOVE · $102,934", "color": "#b8924a", "dy": 64 }
+  ],
+  "tail": { "series": "forecast", "to": 5312 }
+}

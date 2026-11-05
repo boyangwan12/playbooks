@@ -9,8 +9,9 @@ Worked example: the Cash Gap Forecaster carousel (`assets/example-cash-gap/`). I
 
 **Core idea.** A carousel is one story you swipe through, so the pictures must **connect**: ideally ONE wide artwork (5400x1350 for five 1080x1350 slides) that runs across all the slides, with a line, ribbon, road, horizon or colour change crossing the seams. Five separate pictures that merely change gradually (the first paper carousel did this) read as five images, and the user rejected that approach: "the whole idea of carousel is that those pictures connect to each other, like a flow". The **type is real text added by code**, never baked into the art: image generators misspell words and cannot hold a layout; code can.
 
-Two art routes:
-- **Panorama (default).** `scripts/flow-ribbon.mjs` draws a seamless 5400x1350 SVG: a ribbon of light that starts tangled, pinches at the problem and opens into a calm wide band while the background turns from dark to cream. Set `"panorama": {"svg": "art.svg"}` in slides.json. Worked example: `assets/example-flow-ribbon/`.
+Art routes (the picture must be **legible**: a viewer should understand what it means without a caption; the abstract gold "flow ribbon" was rejected as "I don't see it"):
+- **Data line (default for anything with numbers over time).** `scripts/chart-panorama.mjs spec.json art.svg` draws the product's own line chart as ONE seamless picture across all slides, with a threshold line, shaded gap, labelled markers and a "before / after the fix" line. Use the real values; place the dip where the matching slide's text sits (keep labels away from seams). Flat background colour, all slides `"theme": "light"`. Worked example: `assets/example-line-chart/` (and see its README for the spec).
+- **Flow ribbon.** `scripts/flow-ribbon.mjs` draws a seamless 5400x1350 SVG: a ribbon of light that starts tangled, pinches at the problem and opens into a calm wide band while the background turns from dark to cream. Abstract; only use it with explicit labels. Worked example: `assets/example-flow-ribbon/`. Both panorama routes use `"panorama": {"svg": "art.svg"}` in slides.json.
 - **Photo series.** One generated photo per slide (Gemini), used when the user wants photographic art. It needs care to avoid looking like five separate pictures: if used, make a continuous element cross every edge (or outpaint each image from the previous one). See `references/image-gen.md`. Worked example: `assets/example-cash-gap/`.
 
 ## Workflow
@@ -37,6 +38,12 @@ node <skill>/scripts/build.mjs <carousel-dir>     # run from a repo with playwri
 
 ### 5. Review and deliver
 Make a contact sheet and look at every slide: text clear of the artwork, no orphan words, numbers right, logo and page numbers present, progression reads. Then give the user the PDF (LinkedIn "document" upload) and the PNGs, plus the caption. Do not post for them. Commit sources, not the multi-megabyte renders.
+
+## Rules from the user's feedback
+- The slides must connect (one picture across them), not be separate pictures.
+- The picture must be understandable on its own; abstract metaphors need labels or must be replaced by the real chart.
+- **Keep one flat background colour across all slides** unless the user asks for a colour change; the dark-to-cream version was replaced.
+- Order the copy so each slide's text sits over the part of the picture it talks about.
 
 ## Caption (post text)
 Write it for LinkedIn readers, in the EXERGY voice: a one-line hook (the problem, not the product), two or three short lines of context, the invitation, then 3-4 hashtags. Keep the real-vs-invented framing consistent with slide 1. See `references/linkedin.md`.
