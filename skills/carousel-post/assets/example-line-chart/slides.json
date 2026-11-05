@@ -1,28 +1,35 @@
 {
   "panorama": { "svg": "art.svg" },
   "slides": [
-    { "title": "Your forecast is a guess.", "theme": "light", "textMax": 640,
+    { "title": "The Problem.", "theme": "light", "textMax": 760,
       "blocks": [
-        { "p": "A spreadsheet assumes every client pays on the due date. Real clients don't." },
-        { "b": "Swipe to see what that costs." } ] },
-    { "title": "Week six.", "theme": "light", "textMax": 700,
+        { "p": "You run a wholesale bakery. Hotels and cafes order every week, and every invoice goes out with a due date." },
+        { "p": "Your cash forecast is a spreadsheet, and it assumes every client pays on that date. But one of your biggest clients pays about six weeks late." },
+        { "b": "The spreadsheet says you're fine. You're not." } ] },
+    { "title": "Week six.", "theme": "light", "textMax": 760,
       "blocks": [
-        { "p": "$188,900 of bills land in a single week: the staff bonus, payroll and insurance." },
-        { "p": "The spreadsheet says cash is fine, because it counts a late client's payment as already paid." },
-        { "b": "Swipe to see what it misses." } ] },
-    { "title": "Cash Gap Forecaster.", "theme": "light", "textMax": 790,
+        { "p": "In week six, the staff bonus, payroll and insurance all come due: $188,900 in a single week." },
+        { "p": "The late client's payment hasn't arrived, but the spreadsheet counts it as already paid, so nothing warns you." },
+        { "b": "One late payment becomes a cash gap, and nobody sees it coming." } ] },
+    { "title": "The Solution.", "theme": "light", "textMax": 800,
       "blocks": [
-        { "p": "It reads three years of invoices and payments and learns how each client really pays. One hotel client pays about 42 days late." },
-        { "p": "Week six really closes at $19,934, $10,066 under the minimum. Move the staff bonus back two weeks and it becomes $102,934." },
-        { "b": "You see the gap over a month early, and test the fix first." } ] },
-    { "title": "Still time to plan.", "theme": "light", "textMax": 700,
+        { "p": "What if the forecast learned how each client really pays?" },
+        { "p": "That's what EXERGY built as a proof of concept: Cash Gap Forecaster. It reads three years of invoices and payments, then draws the next 13 weeks." },
+        { "p": "Week six closes at $19,934, $10,066 under the minimum. Move the staff bonus back two weeks and it becomes $102,934." },
+        { "b": "You test the fix before you commit." } ] },
+    { "title": "Proof of Concept.", "theme": "light", "textMax": 900,
       "blocks": [
-        { "p": "Weeks 12 and 13 still dip below the minimum, and now there's time to plan for them." },
-        { "b": "You're in control of your cash, with no need to stress." } ] },
-    { "title": "Watch it work.", "theme": "light", "textMax": 700,
+        { "item": "Learns from your history.", "text": "Uses three years of invoices and payments to learn how each client really pays." },
+        { "item": "Shows the gap early.", "text": "Flags the week cash drops below your minimum, over a month ahead." },
+        { "item": "Tests a fix first.", "text": "Move a bill and see the new forecast before you commit." },
+        { "item": "Honest about limits.", "text": "Shows ranges and marks what is an estimate." },
+        { "b": "A forecast you can check, question, and test." },
+        { "note": "Check our next post to see the POC in action." } ] },
+    { "title": "The Invitation.", "theme": "light", "textMax": 900,
       "blocks": [
-        { "p": "Our next post is an 85-second video: a wholesale bakery, a late-paying client and the fix." },
-        { "b": "Want this on your invoices? Message EXERGY." },
+        { "p": "Maybe cash isn't what takes up your evenings. Maybe it's reports, meeting follow-ups, finding information, or something else entirely." },
+        { "p": "If something in your work keeps taking more time than it should, we'd like to hear about it." },
+        { "b": "Let's explore what we could help you with!" },
         { "email": "contact@exergylabs.ai" } ] }
   ]
 }

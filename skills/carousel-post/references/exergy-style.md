@@ -19,3 +19,6 @@ DM Sans: title light 72 px, body light 33 px at 1.46 line height, bold 600 for e
 - "We built this for a client" is a claim. Use it only when true. For an invented example business use "Picture a..." and "an EXERGY proof of concept".
 - Real numbers only; each one should appear in the product or its data.
 - Do not promise outcomes: "see the gap early", "test a fix first", not "never run out of cash".
+
+## Keeping a carousel consistent with EXERGY's own
+Reuse the section titles in order (The Problem. / The Ripple Effect. / The Solution. / Proof of Concept. / The Invitation.); a title may be replaced where the original does not fit the picture (the data-line carousel uses "Week six." for slide 2). Reuse the phrasing patterns: "That's what EXERGY built ... as a proof of concept", bold lead phrase + one sentence on the proof slide, the closing line "Check our next post to see the POC in action.", and the invitation wording ("If something in your work keeps taking more time than it should, we'd like to hear about it." / "Let's explore what we could help you with!" / `contact@exergylabs.ai`). The worked example is `assets/example-line-chart/slides.json`.
