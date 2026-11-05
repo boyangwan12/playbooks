@@ -16,7 +16,8 @@ Plain, calm, second person, short sentences. No hype words, no emojis in slides.
 Typeface: **standard DM Sans** (the `@fontsource-variable/dm-sans` wght file, NOT the optical-size `opsz` file: the opsz version sets tighter and wraps differently). Measured by typesetting the coworker's first paragraph and matching his line breaks exactly:
 - Title: **62 px** (on a 1080 px wide slide), weight ~330, line-height 1.05, normal letter-spacing.
 - Body: **34.5 px**, weight ~330, line-height **1.4**, colour dark charcoal (#2e2e2c); bold (600) only for the closing line and proof-slide lead phrases.
-- Cream background (#f4f1e9), text block starting 96 px from the top, 88 px side margins, logo (dark) bottom-left, "01 / 05" bottom-right.
+- Background: warm near-white **#fbfaf5** with a fine embossed paper grain (variation about 1.8-2 levels out of 255) and a faint cloudy mottling, measured from EXERGY's slides by sampling empty regions. `chart-panorama.mjs` builds exactly this (base `#fdfcf7`, because the grain multiplies it down about 1.6 levels). Note it is NOT brown kraft paper: if kraft is ever wanted, change `bg` to a tan (e.g. #c9a77c) and raise `texture.scale`. Verify any new background by sampling the exported PNG, not by eye.
+- Text block starting 96 px from the top, 88 px side margins, logo (dark) bottom-left, "01 / 05" bottom-right.
 - Use true weights only (the variable font has no italic: do not fake one; an earlier EXERGY slide used a different font for one line and looked like a late edit).
 - If you must re-measure: crop the original slide, typeset the same sentence at candidate sizes in a 1080 px page, and compare where the lines break.
 

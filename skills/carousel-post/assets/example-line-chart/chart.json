@@ -1,5 +1,5 @@
 {
-  "slides": 5, "bg": "#f4f1e9", "ink": "#232323", "y0": 1190, "scale": 2.4,
+  "slides": 5, "bg": "#fdfcf7", "ink": "#232323", "y0": 1190, "scale": 2.4,
   "threshold": { "value": 30, "label": "MINIMUM CASH · $30,000", "color": "#8e897d" },
   "series": [
     { "name": "forecast", "color": "#232323", "width": 4,

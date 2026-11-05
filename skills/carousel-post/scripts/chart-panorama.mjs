@@ -1,7 +1,8 @@
 // Draws a seamless panoramic LINE CHART that runs across ALL carousel slides (one wide SVG, flat background colour).
 // Usage: node chart-panorama.mjs <spec.json> <out.svg>
 // spec.json:
-// { "slides": 5, "bg": "#f4f1e9", "ink": "#232323", "font": "DM Sans, sans-serif",
+// { "slides": 5, "bg": "#fdfcf7",  // + "texture": {"freq":0.10,"octaves":4,"scale":0.3} (embossed paper grain; false = flat)
+//    "ink": "#232323", "font": "DM Sans, sans-serif",
 //   "y0": 1190, "scale": 2.4,                              // value v maps to y = y0 - v*scale  (so 150 -> 830)
 //   "threshold": { "value": 30, "label": "MINIMUM CASH · $30,000", "color": "#9a958a", "x1": 88, "x2": 5312 },
 //   "series": [ { "name": "forecast", "color": "#232323", "width": 4, "dash": null, "dots": true,
@@ -43,7 +44,7 @@ for (const f of S.fills ?? []) {                         // shade between the li
 }
 for (const s of S.series) {
   g += `<path d="${curve(px(s))}" fill="none" stroke="${s.color}" stroke-width="${s.width ?? 4}" stroke-linecap="round" stroke-linejoin="round"${s.dash ? ` stroke-dasharray="${s.dash}"` : ''}/>`;
-  if (s.dots !== false) for (const [x, y] of px(s)) g += `<circle cx="${x}" cy="${y.toFixed(1)}" r="7" fill="${S.bg ?? '#f4f1e9'}" stroke="${s.color}" stroke-width="3"/>`;
+  if (s.dots !== false) for (const [x, y] of px(s)) g += `<circle cx="${x}" cy="${y.toFixed(1)}" r="7" fill="${S.bg ?? '#fdfcf7'}" stroke="${s.color}" stroke-width="3"/>`;
 }
 if (S.tail) {                                            // dotted continuation after the last point, fading out
   const s = S.series.find((q) => q.name === S.tail.series), [lx, ly] = px(s).at(-1), to = S.tail.to ?? W - 88;
@@ -55,7 +56,12 @@ for (const mk of S.markers ?? []) {
      + `<line x1="${mk.x}" y1="${(y + (up ? -20 : 20)).toFixed(1)}" x2="${mk.x}" y2="${(y + dy - (up ? -26 : 26)).toFixed(1)}" stroke="${mk.color}" stroke-width="2" opacity=".7"/>`
      + `<text x="${mk.x}" y="${(y + dy + (up ? 0 : 8)).toFixed(1)}" text-anchor="middle" font-family="${font}" font-size="27" font-weight="600" letter-spacing="3" fill="${mk.color}">${mk.label.replace(/&/g, '&amp;')}</text>`;
 }
-const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" preserveAspectRatio="none"><rect width="${W}" height="${H}" fill="${S.bg ?? '#f4f1e9'}"/>${g}</svg>`;
+// Paper: EXERGY's own carousel uses a warm near-white (#fbfaf5 as printed) with a fine embossed grain (about 2 levels of variation),
+// measured from its slides. Here: base colour #fdfcf7 (the grain multiplies it down by about 1.6 levels) + an embossed fractal-noise relief.
+const TX = S.texture === false ? null : { freq: 0.10, octaves: 4, scale: 0.27, mottle: 0.03, ...(S.texture ?? {}) };   // mottle = amplitude of the soft cloudy variation under the grain (0 = none)
+const slope = (1 / Math.sin(68 * Math.PI / 180)).toFixed(4);         // undo the average darkening of the lighting filter so the base colour stays true
+const paper = TX ? `<defs><filter id="paper" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="${TX.freq}" numOctaves="${TX.octaves}" seed="7" result="n"/><feDiffuseLighting in="n" lighting-color="#ffffff" surfaceScale="${TX.scale}" diffuseConstant="1" result="l"><feDistantLight azimuth="225" elevation="68"/></feDiffuseLighting><feComponentTransfer in="l"><feFuncR type="linear" slope="${slope}"/><feFuncG type="linear" slope="${slope}"/><feFuncB type="linear" slope="${slope}"/></feComponentTransfer></filter><filter id="mottle" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.005" numOctaves="2" seed="3"/><feColorMatrix type="matrix" values="${TX.mottle} 0 0 0 ${(1 - TX.mottle / 2).toFixed(4)}  ${TX.mottle} 0 0 0 ${(1 - TX.mottle / 2).toFixed(4)}  ${TX.mottle} 0 0 0 ${(1 - TX.mottle / 2).toFixed(4)}  0 0 0 0 1"/></filter></defs>` : '';
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" preserveAspectRatio="none">${paper}<rect width="${W}" height="${H}" fill="${S.bg ?? '#fdfcf7'}"/>${TX ? `<rect width="${W}" height="${H}" filter="url(#paper)" style="mix-blend-mode:multiply"/>${TX.mottle ? `<rect width="${W}" height="${H}" filter="url(#mottle)" style="mix-blend-mode:multiply"/>` : ''}` : ''}${g}</svg>`;
 writeFileSync(out, svg);
 const seams = Array.from({ length: N - 1 }, (_, i) => (i + 1) * 1080);
 const near = (S.markers ?? []).filter((m) => seams.some((s) => Math.abs(m.x - s) < 160)).map((m) => m.label);
