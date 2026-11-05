@@ -70,6 +70,11 @@ for (let i = 0; i < n; i++) {
   await (await page.$(sel)).screenshot({ path: join(out, `slide-${i + 1}.png`) });
   console.log(`slide ${i + 1}: text ends at ${Math.round(bottom)}px (max ${max})`);
 }
+if (pano) {                                         // a 5400 px SVG with filters is embedded whole on every page (75 MB): build the PDF from the finished slides instead
+  for (let i = 0; i < n; i++) spawnSync('ffmpeg', ['-v', 'error', '-y', '-i', join(out, `slide-${i + 1}.png`), '-vf', 'scale=1620:-1', '-q:v', '3', join(out, `pdf-${i + 1}.jpg`)]);
+  writeFileSync(join(out, 'pdf.html'), `<style>@page{size:1080px 1350px;margin:0}html,body{margin:0}img{display:block;width:1080px;height:1350px;page-break-after:always}img:last-child{page-break-after:auto}</style>` + cfg.slides.map((_, i) => `<img src="pdf-${i + 1}.jpg">`).join(''));
+  await page.goto(pathToFileURL(join(out, 'pdf.html')).href); await page.waitForTimeout(500);
+}
 await page.pdf({ path: join(out, 'carousel.pdf'), width: '1080px', height: '1350px', printBackground: true });
 await browser.close();
 console.log(`done: ${n} slides + carousel.pdf in ${out}` + (warned ? `  (${warned} overflow warning${warned > 1 ? 's' : ''})` : ''));
